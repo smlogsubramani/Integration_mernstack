@@ -36,7 +36,20 @@ app.post('/login',async (req,res)=>{
 
 })
 
+app.delete('/:id',async(req,res)=>{
+    try{
+        const del = await User.findByIdAndDelete(req.params.id)
+        const deldata = await del.remove()
+        res.json(deldata)
+    }catch(e){
+        res.send(e)
+    }
+})
 
+app.get('/:id',async (req,res)=>{
+    const getuser = await User.findById(req.params.id)
+    res.json(getuser)
+})
 
 app.post('/signup',async (req,res)=>{
     const{email, password} = req.body
