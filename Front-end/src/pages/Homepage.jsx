@@ -11,6 +11,13 @@ const Homepage = () => {
       .catch(error => console.error(error));
   }, []);
 
+
+  const deleteUser=(id)=>{
+    axios.delete(`http://localhost:3000/${id}`)
+    .then(()=>alert("user deleted"))
+    .catch((e)=>console.log(e))
+ }
+
   return (
     <div>
       <h1>Homepage</h1>
@@ -27,6 +34,7 @@ const Homepage = () => {
             <tr key={loga.id}>
               <td>{loga.email}</td>
               <td>{loga.password}</td>
+              <td><button className='btn btn-danger' onClick={()=>deleteUser(loga._id)}>Delete</button></td>
             </tr>
           ))}
         </tbody>

@@ -19,6 +19,18 @@ app.get('/login',async (req,res)=>{
     res.json(user)
 })
 
+
+app.get('/home',async (req,res)=>{
+    const Loga = await User.find()
+    try{
+        res.json(Loga);
+    }catch(e){
+        console.log(e);
+    }
+    
+})
+
+
 app.post('/login',async (req,res)=>{
     const{email, password} = req.body
 
@@ -74,18 +86,9 @@ app.post('/signup',async (req,res)=>{
 
 })
 
-app.get('/home',async (req,res)=>{
-    const Loga = await User.find()
-    try{
-        res.json(Loga);
 
-    }catch(e){
-        console.log(e);
-    }
-    
-})
 
-app.listen(3000, ()=>{
+app.listen(3000,()=>{
     console.log('Server started')
 })
 
